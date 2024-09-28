@@ -18,20 +18,22 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<ClerkProvider>
-			<html lang="en">
+		<html lang="en">
+			<ClerkProvider>
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="system"
 					enableSystem
 					disableTransitionOnChange
 				>
-					<body className={` container mx-auto ${inter.className}`}>
+					<body
+						className={` container mx-auto ${inter.className} overflow-x-hidden`}
+					>
 						<Nav />
 						{children}
 					</body>
 				</ThemeProvider>
-			</html>
-		</ClerkProvider>
+			</ClerkProvider>
+		</html>
 	);
 }
