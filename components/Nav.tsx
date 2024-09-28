@@ -3,7 +3,7 @@ import { ModeToggle } from "./ModeToggle";
 
 const Nav = () => {
 	return (
-		<nav className="flex items-center justify-between w-full mt-2 mb-8">
+		<nav className="flex items-center justify-between mt-2 mb-8 mx-72">
 			<h1 className="text-4xl font-black underline cursor-pointer">
 				Todista
 			</h1>

@@ -7,7 +7,7 @@ export default async function Home() {
 	const { userId } = auth();
 	const todos = await getUserTodoListAction(userId);
 	return (
-		<main className="container mx-auto">
+		<main className="">
 			<AddTodoForm userId={userId} />
 			<TodoTable todos={todos} />
 		</main>
