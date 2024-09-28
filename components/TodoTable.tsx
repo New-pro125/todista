@@ -28,27 +28,22 @@ const TodoTable: React.FC<IProps> = ({ todos }) => {
 				</TableRow>
 			</TableHeader>
 			<TableBody>
-				{todos.length &&
-					todos.map((todo) => (
-						<TableRow key={todo.id}>
-							<TableCell className="font-medium">
-								{todo.id}
-							</TableCell>
-							<TableCell>{todo.title}</TableCell>
-							<TableCell>
-								{todo.completed ? (
-									<Badge>Completed</Badge>
-								) : (
-									<Badge variant="destructive">
-										UnCompleted
-									</Badge>
-								)}
-							</TableCell>
-							<TableCell className="flex items-center justify-end space-x-2">
-								<TodoTableActions todo={todo} />
-							</TableCell>
-						</TableRow>
-					))}
+				{todos.map((todo) => (
+					<TableRow key={todo.id}>
+						<TableCell className="font-medium">{todo.id}</TableCell>
+						<TableCell>{todo.title}</TableCell>
+						<TableCell>
+							{todo.completed ? (
+								<Badge>Completed</Badge>
+							) : (
+								<Badge variant="destructive">UnCompleted</Badge>
+							)}
+						</TableCell>
+						<TableCell className="flex items-center justify-end space-x-2">
+							<TodoTableActions todo={todo} />
+						</TableCell>
+					</TableRow>
+				))}
 			</TableBody>
 			<TableFooter>
 				<TableRow>
