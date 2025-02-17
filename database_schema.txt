@@ -1,0 +1,42 @@
+Subject Table :
+Id -> Subject 
+TopicId -> Id of Topic (Foreign Key to Topics Table) {1 to Many Relationship (1 subject can contain many Topics)}
+
+Topic Table : 
+Id -> Topic Id
+Flash_cardId -> Id of Flash Card (foreign Key to Flash Cards Table {1 to Many Relationship (1 Topic can contain many FlashCards)})
+
+FlashCard Table : 
+Id -> Flash Card Id
+Title -> Text
+Content -> Text 
+isDeleted -> Boolean (True Not Retreived)
+UserID -> Int 
+{One to Many Relationship (only one user can have multiple Flashcards meanwhile The Flashcard is only for one user)}
+
+Photos Table: 
+Id -> Photo Id
+Caption -> Text 
+FlashCard ID -> Id of FlashCard (foreign Key to Flash Cards Table 
+{Many to Many Relationship (the same photo can be used for many different Flashcards and The flash Card contains many photos)})
+
+
+Todo Table:
+id-> Todo
+title -> Text 
+Description -> Text
+DueTime-> DateTime
+Finished -> Boolean
+FinishTime -> DateTime
+UserId -> Int
+{ One to Many Relationship (The Todo is only for one User)}
+Deleted -> Boolean (True Not Retrieved)
+
+User Table 
+id -> 
+username -> Text (Unique)
+email -> Text (unique) 
+phoneNumber -> Text (unique)
+birthdate -> DateTime
+password -> Text 
+

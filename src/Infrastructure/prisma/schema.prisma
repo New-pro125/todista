@@ -1,0 +1,69 @@
+datasource db {
+    provider = "mongodb"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model Todo {
+    id          String   @id @default(uuid()) @map("_id") @db.ObjectId
+    title       String
+    description String?
+    completed   Boolean  @default(false)
+    UserId      String   @db.ObjectId
+    createdAt   DateTime @default(now())
+    DueTime     DateTime
+    User        User     @relation(fields: [UserId], references: [id])
+}
+
+model User {
+    id          String      @id @default(uuid()) @map("_id") @db.ObjectId
+    name        String
+    email       String      @unique
+    username    String      @unique
+    phoneNumber String      @unique
+    birthdate   DateTime
+    createdAt   DateTime    @default(now())
+    password    String
+    Deleted     Boolean     @default(false)
+    Todo        Todo[]
+    FlashCard   FlashCard[]
+}
+
+model Subject {
+    id        String   @id @default(uuid()) @map("_id") @db.ObjectId
+    topicId   String   @db.ObjectId
+    Deleted   Boolean  @default(false)
+    createdAt DateTime @default(now())
+    Topic     Topic    @relation(fields: [topicId], references: [id])
+}
+
+model Topic {
+    id          String    @id @default(uuid()) @map("_id") @db.ObjectId
+    flashCardId String    @db.ObjectId
+    Deleted     Boolean   @default(false)
+    createdAt   DateTime  @default(now())
+    FlashCard   FlashCard @relation(fields: [flashCardId], references: [id])
+    Subject     Subject[]
+}
+
+model FlashCard {
+    id        String   @id @default(uuid()) @map("_id") @db.ObjectId
+    title     String
+    content   String?
+    Deleted   Boolean  @default(false)
+    createdAt DateTime @default(now())
+    UserId    String   @db.ObjectId
+    User      User     @relation(fields: [UserId], references: [id])
+    Topic     Topic[]
+    Photo     Photo[]
+}
+
+model Photo {
+    id          String    @id @default(uuid()) @map("_id") @db.ObjectId
+    caption     String
+    flashCardId String    @db.ObjectId
+    FlashCard   FlashCard @relation(fields: [flashCardId], references: [id])
+}
