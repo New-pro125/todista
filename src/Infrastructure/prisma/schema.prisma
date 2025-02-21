@@ -7,6 +7,12 @@ generator client {
     provider = "prisma-client-js"
 }
 
+enum AuthProvider {
+    credentials
+    google
+    github
+}
+
 model Todo {
     id          String   @id @default(uuid()) @map("_id") @db.ObjectId
     title       String
@@ -20,17 +26,21 @@ model Todo {
 }
 
 model User {
-    id          String      @id @default(uuid()) @map("_id") @db.ObjectId
-    name        String
-    email       String      @unique
-    username    String      @unique
-    phoneNumber String      @unique
-    birthDate   DateTime
-    createdAt   DateTime    @default(now())
-    password    String
-    deleted     Boolean     @default(false)
-    Todo        Todo[]
-    FlashCard   FlashCard[]
+    id                String       @id @default(uuid()) @map("_id") @db.ObjectId
+    name              String
+    email             String       @unique
+    username          String       @unique
+    phoneNumber       String       @unique
+    birthDate         DateTime
+    createdAt         DateTime     @default(now())
+    password          String
+    deleted           Boolean      @default(false)
+    providers         AuthProvider
+    providerAccountId String?
+    Todo              Todo[]
+    FlashCard         FlashCard[]
+
+    @@unique([providers, providerAccountId]) // to prevent duplicate accounts per provider
 }
 
 model Subject {
